@@ -15,45 +15,24 @@ Repository structure
 <!-- TODO: edit this tree to match exactly what you upload. Delete any directory you are NOT releasing (e.g. firmware, if the industry partner has not cleared it). A README that lists files that are not present is worse than one that lists fewer. -->
 .
 ├── data/                     # Raw measurement datasets (CSV)
-│   ├── 1m_*.csv              #   1 m cable, 4 runs
-│   ├── 2m_*.csv              #   2 m cable, 4 runs
-│   ├── 4m_*.csv              #   4 m cable, 4 runs
-│   ├── 5hr_4m_*.csv          #   5-hour continuous, 3 runs
-│   └── cpu_sweep_*.csv       #   CPU load sweep, 75–95 %
 ├── analysis/
-│   └── compute_metrics.py    # Reproduces all values in the results tables
-├── firmware/                 # (optional) ESP32-S3 slave-node firmware
-├── master/                   # (optional) Raspberry Pi master-side software
 ├── LICENSE
 └── README.md
-Dataset format
 
 Each CSV contains one row per logical communication attempt, with the columns:
 
-Column	Meaning
-timestamp	UTC timestamp of the attempt
-node_id	Target slave node (1 or 2)
-attempt_no	Attempt index within the request
-success	True if a valid response was received
-attempts	Number of transmission attempts used (1–3)
-rtt_ms	Round-trip time in milliseconds
-cpu_load_percent	Master CPU load (CPU-sweep datasets only)
-response_bytes_len	Length of the received response payload
+Column	              Meaning
+timestamp	            UTC timestamp of the attempt
+node_id	              Target slave node (1 or 2)
+attempt_no	          Attempt index within the request
+success	              True if a valid response was received
+attempts	            Number of transmission attempts used (1–3)
+rtt_ms	              Round-trip time in milliseconds
+cpu_load_percent	    Master CPU load (CPU-sweep datasets only)
+response_bytes_len	  Length of the received response payload
 <!-- TODO: verify these column names against your actual CSV headers and edit to match. The table above must describe the files you upload. -->
 
 A soft failure is an attempt that succeeded only after retransmission (success = True, attempts > 1); a hard failure is one that failed after all retries (success = False).
-
-Reproducing the results
-
-The analysis script recomputes every value reported in the paper's results tables — PDR with Wilson score 95 % confidence intervals, and RTT median, IQR, and 95th percentile with bootstrap confidence intervals on the median.
-
-Requirements: Python 3, with pandas, numpy, and scipy.
-
-bash
-pip install pandas numpy scipy
-python analysis/compute_metrics.py data/*.csv
-
-The script prints per-condition PDR and RTT statistics that correspond to Tables I–III in the paper.
 
 Hardware summary
 Master: Raspberry Pi 5, USB-to-RS-485 converter.
