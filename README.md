@@ -15,8 +15,11 @@ Repository structure
 <!-- TODO: edit this tree to match exactly what you upload. Delete any directory you are NOT releasing (e.g. firmware, if the industry partner has not cleared it). A README that lists files that are not present is worse than one that lists fewer. -->
 .
 ├── data/                     # Raw measurement datasets (CSV)
+
 ├── analysis/
+
 ├── LICENSE
+
 └── README.md
 
 Each CSV contains one row per logical communication attempt, with the columns:
