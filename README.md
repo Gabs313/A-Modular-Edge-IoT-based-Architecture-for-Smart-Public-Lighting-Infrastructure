@@ -22,9 +22,9 @@ Repository structure
 
 └── README.md
 
-Each CSV contains one row per logical communication attempt, with the columns:
+<!--Each CSV contains one row per logical communication attempt, with the columns:
 
-Column	              Meaning
+<!--Column	              Meaning
 timestamp	            UTC timestamp of the attempt
 node_id	              Target slave node (1 or 2)
 attempt_no	          Attempt index within the request
@@ -32,7 +32,7 @@ success	              True if a valid response was received
 attempts	            Number of transmission attempts used (1–3)
 rtt_ms	              Round-trip time in milliseconds
 cpu_load_percent	    Master CPU load (CPU-sweep datasets only)
-response_bytes_len	  Length of the received response payload
+response_bytes_len	  Length of the received response payload-->
 <!-- TODO: verify these column names against your actual CSV headers and edit to match. The table above must describe the files you upload. -->
 
 A soft failure is an attempt that succeeded only after retransmission (success = True, attempts > 1); a hard failure is one that failed after all retries (success = False).
